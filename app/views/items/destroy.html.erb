@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Delete item</h1>
+
+  <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
+
+  <br>
+
+  <% @invoice.items.each do |item| %>
+    <% product = Product.find(item.product_id) %>
+    <p><%= item.quantity %> <%= item.product.description %> £<%= item.product.gross %> £<%= item.quantity * product.gross %> £<%= item.quantity * product.gross * 0.20 %></p>
+  <% end %>
+
+  <%= simple_form_for([@invoice, @item]) do |element| %>
+    <%= element.input :product_id, placeholder: "Product ID" %>
+    <%= element.input :quantity, placeholder: "Quantity" %>
+    <%= element.submit 'Save', class: 'btn btn-success' %>
+  <% end %>
+
+</div>

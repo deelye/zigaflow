@@ -1,12 +1,12 @@
 <div class="container">
-  <h1>New item</h1>
+  <h1>Add/Edit item</h1>
 
-  <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
-
-  <br>
+  <h3>Invoice ID: <%= @invoice.id %></h3>
+  <h3>Invoice Date: <%= @invoice.date %></h3>
+  <h3>Customer: <%= @invoice.customer.name %></h3>
 
   <% @products.each do |product| %>
-    <p><%= product.id %>: <%= product.code %> <%= product.description %></p>
+    <p>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | £<%= product.gross %></p>
   <% end %>
 
   <%= simple_form_for([@invoice, @item]) do |element| %>

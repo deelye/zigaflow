@@ -1,9 +1,11 @@
 <div class="container">
-  <h1>All Invoices</h1>
+  <h1>ALL INVOICES</h1>
 
   <% @invoices.each do |invoice| %>
     <%= link_to invoice_path(invoice) do %>
-      <p>ID<%= invoice.id %>: <%= invoice.customer.name %> <%= invoice.date %></p>
+      <p>Invoice ID <%= invoice.id %> | <%= invoice.customer.name %> | <%= invoice.date %></p>
     <% end %>
   <% end %>
+
+  <p><%= link_to "New Invoice", new_invoice_path %></p>
 </div>

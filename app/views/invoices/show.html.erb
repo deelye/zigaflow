@@ -1,17 +1,23 @@
 <div class="container">
-  <h1>Invoice</h1>
-  <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
+  <h1>INVOICE</h1>
+
+  <h3>Invoice ID: <%= @invoice.id %></h3>
+  <h3>Invoice Date: <%= @invoice.date %></h3>
+  <h3>Customer: <%= @invoice.customer.name %></h3>
+
 
   <% @invoice.items.each do |item| %>
     <% product = Product.find(item.product_id) %>
     <p><%= item.quantity %> <%= item.product.description %> £<%= item.product.gross %> £<%= item.quantity * product.gross %> £<%= item.quantity * product.gross * 0.20 %></p>
+
+    <p><%= link_to "Delete Item", invoice_item_path(@invoice.id, item.id), method: :delete %></p>
   <% end %>
 
   <p>Total £<%= @net %></p>
 
   <br>
 
-  <%= link_to "Add Item", new_invoice_item_path(params[:id]) %>
+  <p><%= link_to "Add/Edit Item", new_invoice_item_path(params[:id]) %></p>
 
   <br>
 
