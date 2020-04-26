@@ -1,4 +1,4 @@
-<div class="container">
+<div class="z-container">
   <h1>ALL INVOICES</h1>
 
   <% @invoices.each do |invoice| %>
@@ -8,5 +8,25 @@
     </div>
   <% end %>
 
-  <p><%= link_to "New Invoice", new_invoice_path %> | <%= link_to "Products", products_path %></p>
+  <br><br>
+
+  <table>
+    <th>
+      <td>Invoice ID</td>
+      <td>Customer Name</td>
+      <td>Invoice Date</td>
+      <td>Invoice Page</td>
+    </th>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.customer.name %></td>
+        <td><%= invoice.date %></td>
+        <td><%= link_to "Open", invoice_path(invoice) %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <p><%= link_to "New Invoice", new_invoice_path %></p>
 </div>
