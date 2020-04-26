@@ -1,10 +1,14 @@
-<!-- link to index page -->
-
 <div class="container">
   <h1>Invoice</h1>
-  <p>
-    <%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %>
-  </p>
+  <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
+
+  <br>
+
+  <%= link_to "Add Item", new_invoice_item_path(params[:id]) %>
+
+  <br>
+
+  <%= link_to "All Invoices", invoices_path %>
 </div>
 
 
