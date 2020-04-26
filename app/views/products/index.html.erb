@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Products</h1>
+
+  <% @products.each do |product| %>
+    <p>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %></p>
+  <% end %>
+</div>
