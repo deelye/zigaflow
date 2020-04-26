@@ -2,10 +2,11 @@
   <h1>ALL INVOICES</h1>
 
   <% @invoices.each do |invoice| %>
-    <%= link_to invoice_path(invoice) do %>
-      <p>Invoice ID <%= invoice.id %> | <%= invoice.customer.name %> | <%= invoice.date %></p>
-    <% end %>
+    <div>
+      <span>Invoice ID <%= invoice.id %> | <%= invoice.customer.name %> | <%= invoice.date %></span>
+      <span><%= link_to "View Invoice", invoice_path(invoice) %></span>
+    </div>
   <% end %>
 
-  <p><%= link_to "New Invoice", new_invoice_path %></p>
+  <p><%= link_to "New Invoice", new_invoice_path %> | <%= link_to "Products", products_path %></p>
 </div>
