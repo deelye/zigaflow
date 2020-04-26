@@ -1,7 +1,14 @@
 <div class="container">
   <h1>Invoice</h1>
   <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
-  <% raise %>
+
+  <% @invoice.items.each do |item| %>
+    <% product = Product.find(item.product_id) %>
+    <p><%= item.quantity %> <%= item.product.description %> £<%= item.product.gross %> £<%= item.quantity * product.gross %> £<%= item.quantity * product.gross * 0.20 %></p>
+  <% end %>
+
+  <p>Total £<%= @net %></p>
+
   <br>
 
   <%= link_to "Add Item", new_invoice_item_path(params[:id]) %>

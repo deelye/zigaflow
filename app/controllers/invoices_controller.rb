@@ -5,6 +5,7 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:id])
+    @net = net(@invoice)
   end
 
   def new
@@ -29,6 +30,16 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:customer_id, :date)
+  end
+
+  def net(invoice)
+    net = 0.00
+    invoice.items.each do |item|
+      product = Product.find(item.product_id)
+      net += item.quantity * product.gross
+    end
+
+    return net
   end
 
 end
