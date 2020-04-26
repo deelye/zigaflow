@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>New invoice</h1>
+
+  <% @customers.each do |customer| %>
+    <p><%= customer.id %>: <%= customer.name %></p>
+  <% end %>
+
+  <%= simple_form_for(@invoice) do |element| %>
+    <%= element.input :customer_id %>
+    <%= element.input :date, placeholder: "DD-MM-YYYY" %>
+    <%= element.submit 'Save', class: 'btn btn-success' %>
+  <% end %>
+
+</div>
+
+
