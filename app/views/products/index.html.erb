@@ -1,7 +1,10 @@
 <div class="container">
   <h1>Products</h1>
 
-  <% @products.each do |product| %>
-    <p>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %></p>
+  <% @products.sort.each do |product| %>
+    <div>
+      <span>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %></span>
+      <span><%= link_to "Edit Price", edit_product_path(product.id) %></span>
+    </div>
   <% end %>
 </div>

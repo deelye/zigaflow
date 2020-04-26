@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Add/Edit item</h1>
+  <h1>Add Item</h1>
 
   <h3>Invoice ID: <%= @invoice.id %></h3>
   <h3>Invoice Date: <%= @invoice.date %></h3>
@@ -15,6 +15,6 @@
     <%= element.submit 'Add', class: 'btn btn-success' %>
   <% end %>
 
-  <%= link_to "Back To Invoice", invoice_path(@invoice)  %>
+  <%= link_to "Back To Invoice", invoice_path(@invoice) %>
 
 </div>

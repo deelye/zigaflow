@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Edit Product</h1>
+  <%= simple_form_for(@product) do |element| %>
+    <%= element.input :code, disabled: true %>
+    <%= element.input :description, disabled: true %>
+    <%= element.input :gross %>
+    <%= element.submit 'Save', class: 'btn btn-success' %>
+  <% end %>
+
+  <%= link_to "All Products", products_path %>
+</div>
