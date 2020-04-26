@@ -3,9 +3,9 @@
 
   <h3>Invoice ID: <%= @invoice.id %></h3>
   <h3>Invoice Date: <%= @invoice.date %></h3>
-  <h3>Customer: <%= @invoice.customer.name %></h3>
-  <h3>Customer: <%= @invoice.customer.address %></h3>
-  <h3>Customer: <%= @invoice.customer.email %></h3>
+  <h3><%= @invoice.customer.name %></h3>
+  <h3><%= @invoice.customer.address %></h3>
+  <h3><%= @invoice.customer.email %></h3>
 
 
   <% @invoice.items.each do |item| %>
