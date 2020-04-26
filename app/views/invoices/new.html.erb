@@ -6,7 +6,7 @@
   <% end %>
 
   <%= simple_form_for(@invoice) do |element| %>
-    <%= element.input :customer_id %>
+    <%= element.input :customer_id, placeholder: "Customer ID" %>
     <%= element.input :date, placeholder: "DD-MM-YYYY" %>
     <%= element.submit 'Save', class: 'btn btn-success' %>
   <% end %>

@@ -1,4 +1,6 @@
 class Invoice < ApplicationRecord
+  has_many :items
+
   belongs_to :customer
 
   validates :customer_id, presence: true

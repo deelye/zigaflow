@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>New item</h1>
+
+  <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
+
+  <br>
+
+  <% @products.each do |product| %>
+    <p><%= product.id %>: <%= product.code %> <%= product.description %></p>
+  <% end %>
+
+  <%= simple_form_for([@invoice, @item]) do |element| %>
+    <%= element.input :product_id, placeholder: "Product ID" %>
+    <%= element.input :quantity, placeholder: "Quantity" %>
+    <%= element.submit 'Save', class: 'btn btn-success' %>
+  <% end %>
+
+</div>

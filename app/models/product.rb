@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :invoices
+  has_many :items
 
   validates :code, uniqueness: true, presence: true
   validates :description, uniqueness: true, presence: true

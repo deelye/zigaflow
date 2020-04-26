@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Invoice</h1>
   <p><%= @invoice.id %>: <%= @invoice.customer.name %> <%= @invoice.date %></p>
-
+  <% raise %>
   <br>
 
   <%= link_to "Add Item", new_invoice_item_path(params[:id]) %>
