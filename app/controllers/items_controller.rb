@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_invoice, only: [:new, :create, :destroy]
 
   def new
-    @products = Product.all
+    @products = Product.all.sort
     @item = Item.new
   end
 
