@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
+  before_action :set_invoice, only: [:new, :create, :destroy]
+
   def new
-    @invoice = Invoice.find(params[:invoice_id])
     @products = Product.all
     @item = Item.new
   end
 
   def create
-    @invoice = Invoice.find(params[:invoice_id])
     @product = Product.find(item_params["product_id"].to_i)
     quantity = item_params["quantity"]
 
@@ -19,7 +19,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @invoice = Invoice.find(params[:invoice_id])
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to invoice_path(@invoice)
@@ -29,5 +28,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:product_id, :quantity)
+  end
+
+  def set_invoice
+    @invoice = Invoice.find(params[:invoice_id])
   end
 end

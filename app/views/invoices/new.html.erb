@@ -2,11 +2,11 @@
   <h1>NEW INVOICE</h1>
 
   <% @customers.each do |customer| %>
-    <p><%= customer.id %>: <%= customer.name %></p>
+    <p>Customer ID <%= customer.id %> | <%= customer.name %></p>
   <% end %>
 
   <%= simple_form_for(@invoice) do |element| %>
-    <%= element.input :customer_id, placeholder: "Customer ID" %>
+    <%= element.input :customer_id, placeholder: "Customer ID", input_html: { min: 1, step: 1 } %>
     <%= element.input :date, placeholder: "DD-MM-YYYY" %>
     <%= element.submit 'Save', class: 'btn btn-success' %>
   <% end %>

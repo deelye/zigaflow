@@ -8,20 +8,26 @@
 
   <% @invoice.items.each do |item| %>
     <% product = Product.find(item.product_id) %>
-    <p><%= item.quantity %> <%= item.product.description %> £<%= item.product.gross %> £<%= item.quantity * product.gross %> £<%= item.quantity * product.gross * 0.20 %></p>
-
-    <p><%= link_to "Delete Item", invoice_item_path(@invoice.id, item.id), method: :delete %></p>
-  <% end %>
-
-  <p>Total £<%= @net %></p>
-
-  <br>
-
-  <p><%= link_to "Add/Edit Item", new_invoice_item_path(params[:id]) %></p>
+    <div>
+      <span><%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %> | <%= item.quantity %> | <%= number_to_currency(product.gross * item.quantity, unit: "£") %></span>
+      <span><%= link_to "Delete Item", invoice_item_path(@invoice.id, item.id), method: :delete %></span>
+    </div>
+  <%
+   end %>
 
   <br>
 
-  <%= link_to "All Invoices", invoices_path %>
+  <p>Net <%= number_to_currency(@net, unit: "£") %></p>
+  <p>VAT <%= number_to_currency(@net * 0.2, unit: "£") %></p>
+  <p>Total <%= number_to_currency(@net * 1.2, unit: "£") %></p>
+
+  <br>
+
+  <p><%= link_to "Add Item", new_invoice_item_path(params[:id]) %> | <%= link_to "All Invoices", invoices_path %></p>
+
+  <br>
+
+
 </div>
 
 

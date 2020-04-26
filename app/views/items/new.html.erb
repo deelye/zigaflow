@@ -6,13 +6,15 @@
   <h3>Customer: <%= @invoice.customer.name %></h3>
 
   <% @products.each do |product| %>
-    <p>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | £<%= product.gross %></p>
+    <p>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %></p>
   <% end %>
 
   <%= simple_form_for([@invoice, @item]) do |element| %>
-    <%= element.input :product_id, placeholder: "Product ID" %>
+    <%= element.input :product_id, placeholder: "Product ID", input_html: { min: 1, step: 1 } %>
     <%= element.input :quantity, placeholder: "Quantity" %>
-    <%= element.submit 'Save', class: 'btn btn-success' %>
+    <%= element.submit 'Add', class: 'btn btn-success' %>
   <% end %>
+
+  <%= link_to "Back To Invoice", invoice_path(@invoice)  %>
 
 </div>
