@@ -1,5 +1,6 @@
-<div class="container">
+<div class="z-container">
   <h1>Edit Product</h1>
+  <p><%= link_to "Back To Products", products_path %></p>
   <%= simple_form_for(@product) do |element| %>
     <%= element.input :code, disabled: true %>
     <%= element.input :description, disabled: true %>
@@ -7,5 +8,4 @@
     <%= element.submit 'Save', class: 'btn btn-primary' %>
   <% end %>
 
-  <%= link_to "All Products", products_path %>
 </div>
