@@ -9,10 +9,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @product = Product.find(item_params["product_id"].to_i)
+    @product = Product.where("description = ?", item_params["product_id"])
     quantity = item_params["quantity"]
 
-    @item = Item.new({ invoice_id: @invoice.id, product_id: @product.id, quantity: quantity })
+    @item = Item.new({ invoice_id: @invoice.id, product_id: @product[0].id, quantity: quantity })
     if @item.save
       redirect_to new_invoice_item_path(@invoice)
     else

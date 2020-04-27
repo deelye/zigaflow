@@ -45,7 +45,10 @@
 
   <p>Add product to invoice:</p>
   <%= simple_form_for([@invoice, @item]) do |element| %>
-    <%= element.input :product_id, placeholder: "Product ID", input_html: { min: 1, step: 1 }, label: false %>
+    <%= element.input :product_id,
+        placeholder: "Product ID",
+        collection: ["Led 452N", "Led 454N 15W", "Power Unit 150W", "Power Unit 300W", "Transformer 423", "16 Switch Control Panel"],
+        label: false %>
     <%= element.input :quantity, placeholder: "Quantity", label: false %>
     <%= element.submit 'Add', class: 'btn btn-secondary' %>
   <% end %>
@@ -55,14 +58,12 @@
   <p>List of products:</p>
   <table class="table table-striped">
     <tr>
-      <th>ID</th>
       <th>Code</th>
       <th>Description</th>
       <th class="column-center">Unit Cost</th>
     </tr>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.id %></td>
         <td><%= product.code %></td>
         <td><%= product.description %></td>
         <td class="column-center"><%= number_to_currency(product.gross, unit: "£") %></td>
