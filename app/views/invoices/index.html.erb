@@ -10,26 +10,37 @@
       <th class="column-center">Amount</th>
       <th></th>
     </tr>
-    <% @invoices.each do |invoice| %>
+    <% if @invoices.count.zero? %>
       <tr>
-        <td><%= invoice.id %></td>
-        <td><%= invoice.customer.name %></td>
-        <td><%= invoice.date %></td>
-        <td class="column-center"><%= invoice.items.count %></td>
-        <td class="column-center">
-          <% net = 0.00 %>
-          <% invoice.items.each do |item| %>
-            <% product = Product.find(item.product_id) %>
-            <% net += item.quantity * product.gross %>
-          <% end %>
-          <%= number_to_currency(net, unit: "£") %>
-        </td>
-        <td>
-          <%= link_to(invoice_path(invoice)) do %>
-            <i class="far fa-folder-open"></i>
-          <% end %>
-        </td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td class="column-center">-</td>
+        <td class="column-center">-</td>
+        <td></td>
       </tr>
+    <% else %>
+      <% @invoices.each do |invoice| %>
+        <tr>
+          <td><%= invoice.id %></td>
+          <td><%= invoice.customer.name %></td>
+          <td><%= invoice.date %></td>
+          <td class="column-center"><%= invoice.items.count %></td>
+          <td class="column-center">
+            <% net = 0.00 %>
+            <% invoice.items.each do |item| %>
+              <% product = Product.find(item.product_id) %>
+              <% net += item.quantity * product.gross %>
+            <% end %>
+            <%= number_to_currency(net, unit: "£") %>
+          </td>
+          <td>
+            <%= link_to(invoice_path(invoice)) do %>
+              <i class="far fa-folder-open"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
 </div>
