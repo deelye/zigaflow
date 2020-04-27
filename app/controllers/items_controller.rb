@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   def new
     @net = net(@invoice)
+    @due_date = due_date(@invoice)
     @products = Product.all.sort
     @item = Item.new
   end
@@ -43,6 +44,10 @@ class ItemsController < ApplicationController
     end
 
     return net
+  end
+
+  def due_date(invoice)
+    return (invoice.date.to_date + 30).strftime("%d-%m-%Y")
   end
 
 end

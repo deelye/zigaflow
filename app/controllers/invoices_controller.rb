@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
 
   def show
     @net = net(@invoice)
+    @due_date = due_date(@invoice)
   end
 
   def new
@@ -48,6 +49,10 @@ class InvoicesController < ApplicationController
 
   def all_customers
     @customers = Customer.all
+  end
+
+  def due_date(invoice)
+    return (invoice.date.to_date + 30).strftime("%d-%m-%Y")
   end
 
 end
