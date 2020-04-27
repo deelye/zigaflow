@@ -11,7 +11,12 @@
   font-weight: bold;
 }
 
-.invoice-summary td {
+.invoice-summary-label {
   text-align: right;
+  font-style: italic;
+}
+
+.invoice-summary-figure {
+  text-align: left;
   font-style: italic;
 }
