@@ -6,12 +6,14 @@
       <th>ID</th>
       <th>Customer Name</th>
       <th>Issue Date</th>
+      <th>Payment Due Date</th>
       <th class="column-center">Items</th>
       <th class="column-center">Amount</th>
       <th></th>
     </tr>
     <% if @invoices.count.zero? %>
       <tr>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -25,6 +27,7 @@
           <td><%= invoice.id %></td>
           <td><%= invoice.customer.name %></td>
           <td><%= invoice.date %></td>
+          <td><%= (invoice.date.to_date + 30).strftime("%d-%m-%Y") %></td>
           <td class="column-center"><%= invoice.items.count %></td>
           <td class="column-center">
             <% net = 0.00 %>
