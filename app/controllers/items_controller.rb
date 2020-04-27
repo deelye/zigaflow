@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
 
     @item = Item.new({ invoice_id: @invoice.id, product_id: @product.id, quantity: quantity })
     if @item.save
-      redirect_to invoice_path(@invoice)
+      redirect_to new_invoice_item_path(@invoice)
     else
       render :new
     end
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to invoice_path(@invoice)
+    redirect_to new_invoice_item_path(@invoice)
   end
 
   private

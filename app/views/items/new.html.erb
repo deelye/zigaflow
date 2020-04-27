@@ -1,20 +1,76 @@
-<div class="container">
-  <h1>Add Item</h1>
+<div class="z-container">
+<h1>INVOICE</h1>
+  <p><%= link_to "Close Invoice", invoice_path(@invoice) %></p>
+  <div class="invoice-address">
+    <p>Zigaflow</p>
+    <p>28 Leman Street, London, E1 8ER</p>
+    <p>ceo@zigaflow.com</p>
+  </div>
 
-  <h3>Invoice ID: <%= @invoice.id %></h3>
-  <h3>Invoice Date: <%= @invoice.date %></h3>
-  <h3>Customer: <%= @invoice.customer.name %></h3>
+  <br>
 
+  <div class="invoice-client-address">
+    <p>Invoice to:</p>
+    <p><%= @invoice.customer.name %></p>
+    <p><%= @invoice.customer.address %></p>
+    <p><%= @invoice.customer.email %></p>
+  </div>
+
+  <br>
+
+  <div class="invoice-invoice-details">
+    <p>Invoice #: <%= @invoice.id %></p>
+    <p>Issue date: <%= @invoice.date %></p>
+  </div>
+
+  <br>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+    <% @invoice.items.each do |item| %>
+      <% product = Product.find(item.product_id) %>
+      <tr>
+        <td><%= product.description %></td>
+        <td><%= number_to_currency(product.gross, unit: "£") %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
+        <td><%= link_to "Delete", invoice_item_path(@invoice.id, item.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br>
+
+  <p>Add product:</p>
+
+  <table>
+    <tr>
+      <th>Product ID</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
   <% @products.each do |product| %>
-    <p>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %></p>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.code %></td>
+      <td><%= product.description %></td>
+      <td><%= number_to_currency(product.gross, unit: "£") %></td>
+    </tr>
   <% end %>
+
+  </table>
 
   <%= simple_form_for([@invoice, @item]) do |element| %>
     <%= element.input :product_id, placeholder: "Product ID", input_html: { min: 1, step: 1 } %>
     <%= element.input :quantity, placeholder: "Quantity" %>
     <%= element.submit 'Add', class: 'btn btn-success' %>
   <% end %>
-
-  <%= link_to "Back To Invoice", invoice_path(@invoice) %>
 
 </div>

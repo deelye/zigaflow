@@ -1,5 +1,81 @@
+<!-- CAN DELETE THIS BECAUSE ITEM NEW ROUTE? -->
+
 <div class="container">
   <h1>INVOICE</h1>
+  <p><%= link_to "Close Invoice", invoice_path(@invoice) %></p>
+  <div class="invoice-address">
+    <p>Zigaflow</p>
+    <p>28 Leman Street, London, E1 8ER</p>
+    <p>ceo@zigaflow.com</p>
+  </div>
+
+  <br>
+
+  <div class="invoice-client-address">
+    <p>Invoice to:</p>
+    <p><%= @invoice.customer.name %></p>
+    <p><%= @invoice.customer.address %></p>
+    <p><%= @invoice.customer.email %></p>
+  </div>
+
+  <br>
+
+  <div class="invoice-invoice-details">
+    <p>Invoice #: <%= @invoice.id %></p>
+    <p>Issue date: <%= @invoice.date %></p>
+  </div>
+
+  <br>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    <% @invoice.items.each do |item| %>
+      <% product = Product.find(item.product_id) %>
+      <tr>
+        <td><%= product.description %></td>
+        <td><%= number_to_currency(product.gross, unit: "£") %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
+      </tr>
+    <% end %>
+    <tr class="invoice-summary">
+      <td colspan="3">Net Price</td>
+      <td><%= number_to_currency(@net, unit: "£") %></td>
+    </tr>
+    <tr class="invoice-summary">
+      <td colspan="3">VAT</td>
+      <td><%= number_to_currency(@net * 0.2, unit: "£") %></td>
+    </tr>
+    <tr class="invoice-summary">
+      <td colspan="3">Total</td>
+      <td><%= number_to_currency(@net * 1.2, unit: "£") %></td>
+    </tr>
+  </table>
+
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <h3>Invoice ID: <%= @invoice.id %></h3>
   <h3>Invoice Date: <%= @invoice.date %></h3>
