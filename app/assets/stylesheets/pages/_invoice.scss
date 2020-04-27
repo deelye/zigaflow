@@ -17,20 +17,10 @@
 }
 
 .invoice-figures {
-  background-color: $purple;
-  color: white;
-  text-align: right;
-  font-weight: bold;
   padding-right: 20px;
   padding-left: 80px;
-}
-
-.invoice-summary-label {
+  background-color: $purple;
   text-align: right;
-  font-style: italic;
-}
-
-.invoice-summary-figure {
-  text-align: left;
-  font-style: italic;
+  color: white;
+  font-weight: bold;
 }
