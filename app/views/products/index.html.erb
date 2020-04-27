@@ -1,12 +1,23 @@
-<div class="container">
+<div class="z-container">
   <h1>Products</h1>
 
-  <% @products.sort.each do |product| %>
-    <div>
-      <span>Product ID <%= product.id %> | <%= product.code %> | <%= product.description %> | <%= number_to_currency(product.gross, unit: "£") %></span>
-      <span><%= link_to "Edit Price", edit_product_path(product.id) %></span>
-    </div>
-  <% end %>
+  <table>
+    <tr>
+      <th>Product ID</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+    <% @products.sort.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.code %></td>
+        <td><%= product.description %></td>
+        <td><%= number_to_currency(product.gross, unit: "£") %></td>
+        <td><%= link_to "Edit Price", edit_product_path(product.id) %></td>
+      </tr>
+    <% end %>
+  </table>
 
-  <p><%= link_to "Invoices", invoices_path %></p>
 </div>

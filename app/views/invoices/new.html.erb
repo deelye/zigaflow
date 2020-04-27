@@ -1,13 +1,24 @@
-<div class="container">
+<div class="z-container">
   <h1>NEW INVOICE</h1>
+  <p><%= link_to "Back To Invoices", invoices_path %></p>
+  <table>
+    <tr>
+      <th>Customer ID</th>
+      <th>Name</th>
+    </tr>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= customer.name %></td>
+      </tr>
+    <% end %>
+  </table>
 
-  <% @customers.each do |customer| %>
-    <p>Customer ID <%= customer.id %> | <%= customer.name %></p>
-  <% end %>
+  <br>
 
   <%= simple_form_for(@invoice) do |element| %>
-    <%= element.input :customer_id, placeholder: "Customer ID", input_html: { min: 1, step: 1 } %>
-    <%= element.input :date, placeholder: "DD-MM-YYYY" %>
-    <%= element.submit 'Save', class: 'btn btn-success' %>
+    <%= element.input :customer_id, placeholder: "Customer ID", input_html: { min: 1, step: 1 }, label: false %>
+    <%= element.input :date, placeholder: "DD-MM-YYYY", label: false %>
+    <%= element.submit 'Save', class: 'btn btn-primary' %>
   <% end %>
 </div>
