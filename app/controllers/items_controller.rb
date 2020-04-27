@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_invoice, only: [:new, :create, :destroy]
 
   def new
+    @net = net(@invoice)
     @products = Product.all.sort
     @item = Item.new
   end
@@ -33,4 +34,15 @@ class ItemsController < ApplicationController
   def set_invoice
     @invoice = Invoice.find(params[:invoice_id])
   end
+
+  def net(invoice)
+    net = 0.00
+    invoice.items.each do |item|
+      product = Product.find(item.product_id)
+      net += item.quantity * product.gross
+    end
+
+    return net
+  end
+
 end

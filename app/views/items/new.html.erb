@@ -1,19 +1,20 @@
 <div class="z-container">
-<h1>INVOICE</h1>
+  <!-- SHOULD PARTIAL THIS -->
+  <h1>INVOICE</h1>
   <p><%= link_to "Close Invoice", invoice_path(@invoice) %></p>
-  <div class="invoice-address">
-    <p>Zigaflow</p>
-    <p>28 Leman Street, London, E1 8ER</p>
-    <p>ceo@zigaflow.com</p>
-  </div>
-
-  <br>
-
-  <div class="invoice-client-address">
-    <p>Invoice to:</p>
-    <p><%= @invoice.customer.name %></p>
-    <p><%= @invoice.customer.address %></p>
-    <p><%= @invoice.customer.email %></p>
+  <div class="invoice-addresses">
+    <div class="invoice-address">
+      <p>Invoice from:</p>
+      <p>Zigaflow</p>
+      <p>28 Leman Street, London, E1 8ER</p>
+      <p>ceo@zigaflow.com</p>
+    </div>
+    <div class="invoice-client-address">
+      <p>Invoice to:</p>
+      <p><%= @invoice.customer.name %></p>
+      <p><%= @invoice.customer.address %></p>
+      <p><%= @invoice.customer.email %></p>
+    </div>
   </div>
 
   <br>
@@ -43,6 +44,18 @@
         <td><%= link_to "Delete", invoice_item_path(@invoice.id, item.id), method: :delete %></td>
       </tr>
     <% end %>
+    <tr class="invoice-summary">
+      <td colspan="3">Net Price</td>
+      <td><%= number_to_currency(@net, unit: "£") %></td>
+    </tr>
+    <tr class="invoice-summary">
+      <td colspan="3">VAT</td>
+      <td><%= number_to_currency(@net * 0.2, unit: "£") %></td>
+    </tr>
+    <tr class="invoice-summary">
+      <td colspan="3">Total</td>
+      <td><%= number_to_currency(@net * 1.2, unit: "£") %></td>
+    </tr>
   </table>
 
   <br>
@@ -64,7 +77,6 @@
       <td><%= number_to_currency(product.gross, unit: "£") %></td>
     </tr>
   <% end %>
-
   </table>
 
   <%= simple_form_for([@invoice, @item]) do |element| %>

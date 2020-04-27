@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit]
+  before_action :set_invoice, only: [:show]
 
   def index
     @invoices = Invoice.all.sort
@@ -12,9 +12,6 @@ class InvoicesController < ApplicationController
   def new
     @customers = Customer.all
     @invoice = Invoice.new
-  end
-
-  def edit
   end
 
   def create
