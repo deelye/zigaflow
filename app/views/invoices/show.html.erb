@@ -6,6 +6,7 @@
 
   <table class="table table-striped">
     <tr>
+      <th>Code</th>
       <th>Description</th>
       <th class="column-center">Price</th>
       <th class="column-center">Quantity</th>
@@ -18,11 +19,13 @@
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
       </tr>
     <% else %>
       <% @invoice.items.each do |item| %>
         <% product = Product.find(item.product_id) %>
         <tr>
+          <td><%= product.code %></td>
           <td><%= product.description %></td>
           <td class="column-center"><%= number_to_currency(product.gross, unit: "£") %></td>
           <td class="column-center"><%= item.quantity %></td>
