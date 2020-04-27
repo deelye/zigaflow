@@ -13,7 +13,12 @@
         <td><%= invoice.id %></td>
         <td><%= invoice.customer.name %></td>
         <td><%= invoice.date %></td>
-        <td><%= link_to "Open", invoice_path(invoice) %></td>
+        <td>
+          <%= link_to(invoice_path(invoice)) do %>
+            <i class="far fa-folder-open"></i>
+          <% end %>
+        </td>
+        <!-- <td><%= link_to "Open", invoice_path(invoice) %></td> -->
       </tr>
     <% end %>
   </table>
