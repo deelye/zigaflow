@@ -64,7 +64,7 @@
   <%= simple_form_for([@invoice, @item]) do |element| %>
     <%= element.input :product_id, placeholder: "Product ID", input_html: { min: 1, step: 1 }, label: false %>
     <%= element.input :quantity, placeholder: "Quantity", label: false %>
-    <%= element.submit 'Add', class: 'btn btn-primary' %>
+    <%= element.submit 'Add', class: 'btn btn-secondary' %>
   <% end %>
 
 </div>
