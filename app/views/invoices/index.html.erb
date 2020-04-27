@@ -1,12 +1,12 @@
 <div class="z-container">
   <h1>ALL INVOICES</h1>
-
+  <p><%= link_to "New Invoice", new_invoice_path %></p>
   <table>
     <tr>
       <th>Invoice ID</th>
       <th>Customer Name</th>
-      <th>Invoice Date</th>
-      <th>Invoice Page</th>
+      <th>Issue Date</th>
+      <th>Invoice</th>
     </tr>
     <% @invoices.each do |invoice| %>
       <tr>
@@ -16,8 +16,5 @@
         <td><%= link_to "Open", invoice_path(invoice) %></td>
       </tr>
     <% end %>
-
   </table>
-
-  <p><%= link_to "New Invoice", new_invoice_path %></p>
 </div>

@@ -1,10 +1,11 @@
 class InvoicesController < ApplicationController
+  before_action :set_invoice, only: [:show, :edit]
+
   def index
     @invoices = Invoice.all.sort
   end
 
   def show
-    @invoice = Invoice.find(params[:id])
     @net = net(@invoice)
   end
 
@@ -13,6 +14,8 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
+  def edit
+  end
 
   def create
     @customer = Customer.find(invoice_params["customer_id"].to_i)
@@ -30,6 +33,10 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:customer_id, :date)
+  end
+
+  def set_invoice
+    @invoice = Invoice.find(params[:id])
   end
 
   def net(invoice)

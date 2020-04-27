@@ -1,4 +1,12 @@
-table {
-  border-spacing: 50px 0px;
-  text-align: center;
+.invoice-address p, .invoice-client-address p, .invoice-invoice-details p {
+  margin: 0px;
+}
+
+.invoice-address p {
+  font-weight: bold;
+}
+
+.invoice-summary td {
+  text-align: right;
+  font-style: italic;
 }
