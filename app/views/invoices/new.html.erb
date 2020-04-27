@@ -2,15 +2,16 @@
   <h1>NEW INVOICE</h1>
   <p><%= link_to "Back To Invoices", invoices_path %></p>
 
+  <p>Create invoice:</p>
   <%= simple_form_for(@invoice) do |element| %>
     <%= element.input :customer_id, placeholder: "Customer ID", input_html: { min: 1, step: 1 }, label: false %>
     <%= element.input :date, placeholder: "DD-MM-YYYY", label: false %>
-    <%= element.submit 'Create Invoice', class: 'btn btn-secondary' %>
+    <%= element.submit 'Save', class: 'btn btn-secondary' %>
   <% end %>
 
   <br>
 
-  <p>List of Customers:</p>
+  <p>List of customers:</p>
   <table class="table table-striped">
     <tr>
       <th>ID</th>
