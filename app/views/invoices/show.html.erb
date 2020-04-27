@@ -7,9 +7,9 @@
   <table class="table table-striped">
     <tr>
       <th>Description</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
+      <th class="column-center">Price</th>
+      <th class="column-center">Quantity</th>
+      <th class="column-center">Total</th>
     </tr>
 
     <% if @invoice.items.count.zero? %>
@@ -24,9 +24,9 @@
         <% product = Product.find(item.product_id) %>
         <tr>
           <td><%= product.description %></td>
-          <td><%= number_to_currency(product.gross, unit: "£") %></td>
-          <td><%= item.quantity %></td>
-          <td><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
+          <td class="column-center"><%= number_to_currency(product.gross, unit: "£") %></td>
+          <td class="column-center"><%= item.quantity %></td>
+          <td class="column-center"><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
         </tr>
       <% end %>
     <% end %>

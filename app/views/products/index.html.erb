@@ -6,7 +6,7 @@
       <th>ID</th>
       <th>Code</th>
       <th>Description</th>
-      <th>Price</th>
+      <th class="column-center">Price</th>
       <th></th>
     </tr>
     <% @products.sort.each do |product| %>
@@ -14,7 +14,7 @@
         <td><%= product.id %></td>
         <td><%= product.code %></td>
         <td><%= product.description %></td>
-        <td><%= number_to_currency(product.gross, unit: "£") %></td>
+        <td class="column-center"><%= number_to_currency(product.gross, unit: "£") %></td>
         <td>
           <%= link_to(edit_product_path(product.id)) do %>
             <i class="far fa-edit"></i>
