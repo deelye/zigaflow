@@ -39,41 +39,35 @@
       <th>Total</th>
       <th></th>
     </tr>
-    <% @invoice.items.each do |item| %>
-      <% product = Product.find(item.product_id) %>
+
+    <% if @invoice.items.count.zero? %>
       <tr>
-        <td><%= product.description %></td>
-        <td><%= number_to_currency(product.gross, unit: "£") %></td>
-        <td><%= item.quantity %></td>
-        <td><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
-        <td>
-          <%= link_to(invoice_item_path(@invoice.id, item.id), method: :delete) do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
-        </td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
       </tr>
+    <% else %>
+      <% @invoice.items.each do |item| %>
+        <% product = Product.find(item.product_id) %>
+        <tr>
+          <td><%= product.description %></td>
+          <td><%= number_to_currency(product.gross, unit: "£") %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
+          <td>
+            <%= link_to(invoice_item_path(@invoice.id, item.id), method: :delete) do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
-    <!-- <tr>
-      <td class="invoice-summary-label" colspan="3">Net Price</td>
-      <td class="invoice-summary-figure"><%= number_to_currency(@net, unit: "£") %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td class="invoice-summary-label" colspan="3">VAT</td>
-      <td class="invoice-summary-figure"><%= number_to_currency(@net * 0.2, unit: "£") %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td class="invoice-summary-label" colspan="3">Total</td>
-      <td class="invoice-summary-figure"><%= number_to_currency(@net * 1.2, unit: "£") %></td>
-      <td></td>
-    </tr> -->
   </table>
 
   <br>
 
-
-<p>Products:</p>
+  <p>Products:</p>
   <table class="table table-striped">
     <tr>
       <th>ID</th>
