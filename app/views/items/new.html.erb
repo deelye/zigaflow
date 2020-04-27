@@ -47,14 +47,17 @@
     <tr class="invoice-summary">
       <td colspan="3">Net Price</td>
       <td><%= number_to_currency(@net, unit: "£") %></td>
+      <td></td>
     </tr>
     <tr class="invoice-summary">
       <td colspan="3">VAT</td>
       <td><%= number_to_currency(@net * 0.2, unit: "£") %></td>
+      <td></td>
     </tr>
     <tr class="invoice-summary">
       <td colspan="3">Total</td>
       <td><%= number_to_currency(@net * 1.2, unit: "£") %></td>
+      <td></td>
     </tr>
   </table>
 
@@ -62,7 +65,7 @@
 
 
 <p>Products:</p>
-  <table>
+  <table class="table table-striped">
     <tr>
       <th>Product ID</th>
       <th>Code</th>
