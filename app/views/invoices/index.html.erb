@@ -6,6 +6,8 @@
       <th>ID</th>
       <th>Customer Name</th>
       <th>Issue Date</th>
+      <th class="column-center">Items</th>
+      <th class="column-center">Amount</th>
       <th></th>
     </tr>
     <% @invoices.each do |invoice| %>
@@ -13,6 +15,15 @@
         <td><%= invoice.id %></td>
         <td><%= invoice.customer.name %></td>
         <td><%= invoice.date %></td>
+        <td class="column-center"><%= invoice.items.count %></td>
+        <td class="column-center">
+          <% net = 0.00 %>
+          <% invoice.items.each do |item| %>
+            <% product = Product.find(item.product_id) %>
+            <% net += item.quantity * product.gross %>
+          <% end %>
+          <%= number_to_currency(net, unit: "£") %>
+        </td>
         <td>
           <%= link_to(invoice_path(invoice)) do %>
             <i class="far fa-folder-open"></i>
