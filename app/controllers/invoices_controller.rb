@@ -16,10 +16,10 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @customer = Customer.find(invoice_params["customer_id"].to_i)
+    @customer = Customer.where("name = ?", invoice_params["customer_id"])
     date = invoice_params["date"]
 
-    @invoice = Invoice.new({ customer_id: @customer.id, date: date})
+    @invoice = Invoice.new({ customer_id: @customer[0].id, date: date})
     if @invoice.save
       redirect_to invoice_path(@invoice)
     else
