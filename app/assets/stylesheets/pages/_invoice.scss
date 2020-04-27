@@ -3,12 +3,26 @@
   justify-content: space-between;
 }
 
-.invoice-address p, .invoice-client-address p, .invoice-invoice-details p {
+.invoice-address p, .invoice-client-address p, .invoice-invoice-details p, .invoice-figures p {
   margin: 0px;
 }
 
 .invoice-address p {
   font-weight: bold;
+}
+
+.invoice-address, .invoice-client-address, .invoice-figures {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.invoice-figures {
+  background-color: $purple;
+  color: white;
+  text-align: right;
+  font-weight: bold;
+  padding-right: 20px;
+  padding-left: 80px;
 }
 
 .invoice-summary-label {

@@ -15,8 +15,13 @@
       <p><%= @invoice.customer.address %></p>
       <p><%= @invoice.customer.email %></p>
     </div>
+    <div class="invoice-figures">
+      <p>SUMMARY</p>
+      <p>NET: <%= number_to_currency(@net, unit: "£") %></p>
+      <p>VAT: <%= number_to_currency(@net * 0.2, unit: "£") %></p>
+      <p>TOTAL: <%= number_to_currency(@net * 1.2, unit: "£") %></p>
+    </div>
   </div>
-
   <br>
 
   <div class="invoice-invoice-details">
@@ -32,6 +37,7 @@
       <th>Price</th>
       <th>Quantity</th>
       <th>Total</th>
+      <th></th>
     </tr>
     <% @invoice.items.each do |item| %>
       <% product = Product.find(item.product_id) %>
@@ -39,26 +45,29 @@
         <td><%= product.description %></td>
         <td><%= number_to_currency(product.gross, unit: "£") %></td>
         <td><%= item.quantity %></td>
+        <td><%= number_to_currency(product.gross * item.quantity, unit: "£") %></td>
         <td>
-          <%= number_to_currency(product.gross * item.quantity, unit: "£") %>
           <%= link_to(invoice_item_path(@invoice.id, item.id), method: :delete) do %>
             <i class="far fa-trash-alt"></i>
           <% end %>
         </td>
       </tr>
     <% end %>
-    <tr>
+    <!-- <tr>
       <td class="invoice-summary-label" colspan="3">Net Price</td>
       <td class="invoice-summary-figure"><%= number_to_currency(@net, unit: "£") %></td>
+      <td></td>
     </tr>
     <tr>
       <td class="invoice-summary-label" colspan="3">VAT</td>
       <td class="invoice-summary-figure"><%= number_to_currency(@net * 0.2, unit: "£") %></td>
+      <td></td>
     </tr>
     <tr>
       <td class="invoice-summary-label" colspan="3">Total</td>
       <td class="invoice-summary-figure"><%= number_to_currency(@net * 1.2, unit: "£") %></td>
-    </tr>
+      <td></td>
+    </tr> -->
   </table>
 
   <br>
