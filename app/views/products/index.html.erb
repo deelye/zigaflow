@@ -15,7 +15,11 @@
         <td><%= product.code %></td>
         <td><%= product.description %></td>
         <td><%= number_to_currency(product.gross, unit: "£") %></td>
-        <td><%= link_to "Edit Price", edit_product_path(product.id) %></td>
+        <td>
+          <%= link_to(edit_product_path(product.id)) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
